@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+    background-color: #74af55;
+}
+.title {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2em;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+button {
+    font-size: 1.2em;
+    padding: 10px 30px;
+    border-radius: 30px;
+    margin: 20px 0;
+}
+
+.level-container {
+    visibility: hidden;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.scores {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.row {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.hole {
+    width: 200px;
+    height: 170px;
+    background-image: url(img/hole.png);
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+}
+.mole {
+    width: 60%;
+    position: absolute;
+    top: -20px;
+    left: 40px;
+    display: none;
+}
+
+.hammer {
+    width: 200px;
+    height: 200px;
+    background: url(img/hammer.png);
+    left: 100px;
+    top: -70px;
+    background-size: cover;
+    position: absolute;
+    animation: hammerSmack 1s;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.hole.active img{
+    display: block;
+    z-index: 10;
+}
+
+@keyframes hammerSmack {
+    0% { transform: rotate(-10deg)  }  
+    50% { transform: rotate(-90deg)  }  
+    100% { transform: rotate(-30deg)  }     
+}
