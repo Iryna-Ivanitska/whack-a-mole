@@ -2,17 +2,17 @@
 
 body {
     background-color: #74af55;
+    font-family: 'Fredoka One', cursive;
 }
 .title {
     width: 70%;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Fredoka One', cursive;
-    font-size: 2em;
+    font-size: 1.3em;
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 1.8em;
     margin: 0;
 }
 
@@ -20,7 +20,7 @@ button {
     font-size: 1.2em;
     padding: 10px 30px;
     border-radius: 30px;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .level-container {
@@ -28,9 +28,10 @@ button {
 }
 
 .container {
-    width: 800px;
+    width: 500px;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 25px;
+    position: relative;
 }
 
 .scores {
@@ -47,8 +48,8 @@ button {
 }
 
 .hole {
-    width: 200px;
-    height: 170px;
+    width: 150px;
+    height: 120px;
     background-image: url(img/hole.png);
     background-position: center center;
     background-size: cover;
@@ -57,14 +58,14 @@ button {
 .mole {
     width: 60%;
     position: absolute;
-    top: -20px;
-    left: 40px;
+    top: -18px;
+    left: 30px;
     display: none;
 }
 
 .hammer {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     background: url(img/hammer.png);
     left: 100px;
     top: -70px;
@@ -80,8 +81,31 @@ button {
     z-index: 10;
 }
 
+.set-element {
+    width: 400px;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 13%;
+    color: white;
+    font-weight: 800;
+    letter-spacing: .2em;
+    animation: levelFading 1s ease-in;
+    animation-iteration-count: 1;
+    display: none;
+    text-align: center;
+    z-index: 30;
+}
+
 @keyframes hammerSmack {
     0% { transform: rotate(-10deg)  }  
     50% { transform: rotate(-90deg)  }  
     100% { transform: rotate(-30deg)  }     
+}
+
+@keyframes levelFading {
+    0% { opacity: 1;
+         transform: scale(0.6);  }  
+    100% { opacity: 0;
+         transform: scale(1);    }     
 }
