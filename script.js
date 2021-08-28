@@ -60,9 +60,6 @@ function showLevel(lev) {
     setElement.textContent = `Level: ${lev}`;
     setElement.style.display = 'block';
     setElement.addEventListener('animationend', removeLevel); 
-    
-        
-
 }
 
 
