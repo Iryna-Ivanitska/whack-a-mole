@@ -56,14 +56,10 @@ function removeLevel() {
     
 }
 function showLevel(lev) {
-    // setElement.style.opacity = 1;
     setElement.style.animation = 'levelFading 1s ease-in';
     setElement.textContent = `Level: ${lev}`;
     setElement.style.display = 'block';
     setElement.addEventListener('animationend', removeLevel); 
-    
-        
-
 }
 
 
@@ -93,7 +89,6 @@ function peep(lev) {
                 setElement.style.animation = 'none';
             }
             
-            // debugger
             if (myHighScore < currentScore) {
                 localStorage['highScore'] = currentScore;
                 myHighScore = localStorage.getItem('highScore');
@@ -101,9 +96,7 @@ function peep(lev) {
             }
     }
     }, time)
-
-    
-    
+   
 }
 
 function smack(e) {
@@ -120,11 +113,9 @@ function addHammer(e) {
     hammer.classList.add("hammer"); 
     e.path[1].append(hammer);
     e.path[1].addEventListener('mouseup', removeHammer)
+    e.path[1].onmousemove = removeHammer;
 }
 function removeHammer(e) {
-    // document.querySelector(".hammer").remove();
-    // let currentLevel = +level.innerHTML;
-    // console.log((levelNumber-currentLevel)*10+50);
     setTimeout( () => {
         let currentHammer = document.querySelector(".hammer");
         if (currentHammer) currentHammer.remove();
@@ -148,5 +139,4 @@ startButton.addEventListener( 'click', startGame)
 moles.forEach( el => el.addEventListener('click', smack))
 
 moles.forEach( el => el.addEventListener('mousedown', addHammer))
-// moles.forEach( el => el.addEventListener('mouseup', removeHammer))
 
