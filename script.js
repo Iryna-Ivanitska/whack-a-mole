@@ -6,6 +6,7 @@ const level = document.querySelector('.level');
 const startButton = document.querySelector('.button');
 const levelContainer = document.querySelector('.level-container');
 const sound = document.querySelector('#hit');
+let setElement = document.querySelector('.set-element');
 let lastHole, myHighScore;
 let currentScore = 0;
 let lev = 1;
@@ -13,21 +14,22 @@ let levelCounter = [,];
 let molesActive = 1;
 let endLevel = false;
 
+
 if (!localStorage.highScore) localStorage.setItem('highScore', 0);
 myHighScore = localStorage.getItem('highScore');
 
 const levels = {
     '1': 1400,
     '2': 1300,
-    '3': 1200,
-    '4': 1100,
-    '5': 900,
-    '6': 700,
-    '7': 600,
-    '8': 500,
-    '9': 400,
-    '10': 300,
-    '11': 200,
+    // '3': 1200,
+    // '4': 1100,
+    // '5': 900,
+    // '6': 700,
+    // '7': 600,
+    // '8': 500,
+    // '9': 400,
+    // '10': 300,
+    // '11': 200,
 }
 
 const levelNumber = Object.keys(levels).length;
@@ -49,30 +51,54 @@ function randomHole(holes) {
     return hole;
 }
 
+function removeLevel() {
+   setElement.style.display = 'none';
+    
+}
+function showLevel(lev) {
+    // setElement.style.opacity = 1;
+    setElement.style.animation = 'levelFading 1s ease-in';
+    setElement.textContent = `Level: ${lev}`;
+    setElement.style.display = 'block';
+    setElement.addEventListener('animationend', removeLevel); 
+    
+        
+
+}
+
+
 function peep(lev) {
     const time = levels[`${lev}`];
-    level.textContent = lev;
+    if (lev <= levelNumber) level.textContent = lev;
     const hole = randomHole(holes);
     hole.classList.add('active');
   
     setTimeout( () => {
+        
         hole.classList.remove('active');
         if (levelCounter.includes(molesActive))  {
             lev = levelCounter.indexOf(molesActive) + 1;
-        }
+            showLevel(lev);
+        } 
         if (!endLevel) peep(lev);
         molesActive++;
         if (molesActive === levelCounter.length*5) {
-            alert('game over');
+            // alert('game over');
             startButton.disabled = false;
             endLevel = true;
+            setElement.textContent = 'GAME OVER';
+            if (lev === levelNumber+1) {
+                setElement.style.display = 'block';
+                setElement.style.opacity = 1;
+                setElement.style.animation = 'none';
+            }
+            
             // debugger
             if (myHighScore < currentScore) {
                 localStorage['highScore'] = currentScore;
                 myHighScore = localStorage.getItem('highScore');
                 highScoreBoard.textContent = myHighScore;
             }
-            
     }
     }, time)
 
@@ -107,6 +133,7 @@ function removeHammer(e) {
 
 
 const startGame = (e) => {
+    showLevel(1)
     startButton.disabled = true;
     levelContainer.style.visibility = 'visible';
     molesActive = 0;
